@@ -1,52 +1,131 @@
-# StoreFront
+# StoreFront - Angular E-Commerce Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.2.
+A fully functional single-page e-commerce application built with Angular featuring product browsing, shopping cart management, and checkout functionality.
 
-## Development server
+## Project Description
 
-To start a local development server, run:
+StoreFront is a modern Angular-based e-commerce application that demonstrates core Angular concepts including:
+- Component-based architecture with parent-child relationships
+- Service-based state management for shopping cart
+- Reactive programming with RxJS Observables
+- Template-driven forms with validation
+- Angular routing for seamless navigation
+- HttpClient for data fetching
 
+### Features
+- **Product Catalog**: Browse products with images, descriptions, and prices
+- **Shopping Cart**: Add, remove, and manage cart items with real-time total calculation
+- **Form Validation**: Checkout form with input validation (name min 3 chars, address min 5 chars, card min 10 chars)
+- **Order Confirmation**: Success page displaying order details
+- **Responsive Design**: Mobile-friendly UI with modern styling
+- **User Feedback**: Alerts when products are added to cart
+
+## Installation and Launch
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+
+### Installation Steps
+
+1. **Clone the repository** (if applicable):
+```bash
+git clone <repository-url>
+cd store-front
+```
+
+2. **Install dependencies**:
+```bash
+npm install
+```
+
+3. **Start the development server**:
+```bash
+npm start
+```
+Or:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+4. **Open the application**:
+Navigate to `http://localhost:4200/` in your browser
 
-## Code scaffolding
+The application will automatically reload when source files are modified.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Application Structure
 
-```bash
-ng generate component component-name
-```
+### Components
+- **AppComponent**: Root component containing header and router outlet
+- **HeaderComponent**: Navigation bar with cart badge
+- **ProductListComponent**: Displays product catalog fetched from data.json
+- **ProductItemComponent**: Individual product card with add-to-cart functionality
+- **CartComponent**: Shopping cart view with item management and total calculation
+- **CheckoutComponent**: Checkout form with validation
+- **ConfirmationComponent**: Order success page
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Services
+- **CartService**: Manages shopping cart state and operations (add, remove, clear, calculate total)
 
-```bash
-ng generate --help
-```
+### Models
+- **IProduct**: TypeScript interface defining product structure (id, name, price, url, description)
+- **ICartItem**: Extends IProduct with quantity field
 
-## Building
+## User Flow
 
-To build the project run:
+1. **Home Page** (`/`): Browse products from the catalog
+2. **Add to Cart**: Click "Add to Cart" on any product
+3. **View Cart** (`/cart`): Review items, quantities, and total cost
+4. **Checkout** (`/checkout`): Fill out customer information form
+5. **Confirmation** (`/confirmation`): View order success message
+
+## Technical Implementation
+
+### Data Flow
+- **Parent to Child**: Uses `@Input()` decorator (e.g., ProductListComponent passes product to ProductItemComponent)
+- **Child to Parent**: Uses `@Output()` and `EventEmitter` (e.g., ProductItemComponent emits addToCart event)
+- **Sibling Components**: CartService shares cart data between ProductListComponent and CartComponent
+
+### Form Validation
+- Template-driven forms using `ngModel`
+- Minimum length validation on all fields
+- Real-time error messages
+- Submit button disabled until form is valid
+
+### Routing
+- Uses `<router-outlet>` for component rendering
+- `routerLink` for navigation
+- Lazy loading with `loadComponent()`
+- No page reloads during navigation
+
+### Styling
+- Custom CSS for all components
+- Responsive grid layout
+- Modern UI with hover effects
+- Follows clean code standards
+
+## Building for Production
+
+To build the project for production:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Running Tests
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To execute unit tests:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Additional Resources
 
-For end-to-end (e2e) testing, run:
+- [Angular Documentation](https://angular.dev)
+- [Angular CLI Reference](https://github.com/angular/angular-cli)
 
 ```bash
 ng e2e
