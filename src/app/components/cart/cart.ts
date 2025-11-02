@@ -19,7 +19,7 @@ export class Cart implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.cartService.cart$.subscribe(items => {
+    this.cartService.cart$.subscribe(items=> {
       this.cartItems = items;
       this.total = this.cartService.getTotal();
     });

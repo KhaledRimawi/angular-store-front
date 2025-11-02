@@ -32,7 +32,7 @@ export class Checkout implements OnInit {
   ngOnInit(): void {
     this.total = this.cartService.getTotal();
     this.itemCount = this.cartService.getItemCount();
-    
+
     // Redirect to cart if empty
     if (this.itemCount === 0) {
       alert('Your cart is empty!');

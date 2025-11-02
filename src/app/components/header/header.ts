@@ -15,7 +15,6 @@ export class Header implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    // Subscribe to cart changes to keep count updated
     this.cartService.cart$.subscribe(items => {
       this.cartItemCount = items.reduce((count, item) => count + item.quantity, 0);
     });
