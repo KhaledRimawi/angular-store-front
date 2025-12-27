@@ -1,9 +1,14 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<footer>
-  <p>&copy; 2025 My Store. All rights reserved.</p>
-  <div class="footer-info">
-    <a href="#">Privacy Policy</a> |
-    <a href="#">Terms of Service</a>
-  </div>
-</footer>
+<div class="app-wrapper">
+  <app-header></app-header>
+  
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <footer class="app-footer">
+    <div class="footer-content">
+      <p>&copy; 2024 StoreFront. All rights reserved.</p>
+      <p class="footer-subtitle">Your trusted online shopping destination</p>
+    </div>
+  </footer>
+</div>

@@ -1,6 +1,8 @@
 {
   "name": "store-front",
   "version": "0.0.0",
+  "author": "Khaled Abdaraheem",
+  "description": "Modern Angular E-Commerce Application by Khaled Abdaraheem",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

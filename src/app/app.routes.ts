@@ -1,25 +1,39 @@
 import { Routes } from '@angular/router';
+import { APP_CONSTANTS } from './core/constants/app.constants';
 
+/**
+ * Application Routes
+ * Using lazy loading for better performance
+ */
 export const routes: Routes = [
   {
-    path: '',
+    path: APP_CONSTANTS.ROUTES.HOME,
     loadComponent: () =>
-      import('./components/product-list/product-list').then((m) => m.ProductList),
+      import('./features/products/components/product-list.component').then(
+        (m) => m.ProductListComponent
+      ),
   },
   {
-    path: 'cart',
-    loadComponent: () => import('./components/cart/cart').then((m) => m.Cart),
+    path: APP_CONSTANTS.ROUTES.CART,
+    loadComponent: () =>
+      import('./features/cart/components/cart.component').then((m) => m.CartComponent),
   },
   {
-    path: 'checkout',
-    loadComponent: () => import('./components/checkout/checkout').then((m) => m.Checkout),
+    path: APP_CONSTANTS.ROUTES.CHECKOUT,
+    loadComponent: () =>
+      import('./features/checkout/components/checkout.component').then(
+        (m) => m.CheckoutComponent
+      ),
   },
   {
-    path: 'confirmation',
-    loadComponent: () => import('./components/confirmation/confirmation').then((m) => m.Confirmation),
+    path: APP_CONSTANTS.ROUTES.CONFIRMATION,
+    loadComponent: () =>
+      import('./features/checkout/components/confirmation.component').then(
+        (m) => m.ConfirmationComponent
+      ),
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: APP_CONSTANTS.ROUTES.HOME,
   },
 ];

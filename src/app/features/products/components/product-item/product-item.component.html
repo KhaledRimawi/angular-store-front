@@ -1,0 +1,26 @@
+<div class="product-card">
+  <div class="product-image-container">
+    <img 
+      [src]="product().url" 
+      [alt]="product().name" 
+      class="product-image"
+      loading="lazy">
+  </div>
+  
+  <div class="product-content">
+    <h3 class="product-title">{{ product().name }}</h3>
+    <p class="product-description">{{ product().description }}</p>
+    
+    <div class="product-footer">
+      <span class="product-price">{{ product().price | currency }}</span>
+      <button 
+        type="button"
+        class="btn-add-to-cart" 
+        (click)="onAddToCart()"
+        aria-label="Add {{ product().name }} to cart">
+        <span class="btn-icon">🛒</span>
+        <span class="btn-text">Add to Cart</span>
+      </button>
+    </div>
+  </div>
+</div>

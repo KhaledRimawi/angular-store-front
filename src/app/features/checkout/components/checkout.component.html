@@ -1,0 +1,135 @@
+<div class="checkout-container">
+  <header class="checkout-header">
+    <h1 class="checkout-title">Checkout</h1>
+    <p class="checkout-subtitle">Complete your order</p>
+  </header>
+
+  <div class="checkout-content">
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h2 class="summary-title">Order Summary</h2>
+      <div class="summary-details">
+        <div class="summary-row">
+          <span class="summary-label">Total Items:</span>
+          <span class="summary-value">{{ itemCount() }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Subtotal:</span>
+          <span class="summary-value">{{ total() | currency }}</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Shipping:</span>
+          <span class="summary-value free">Free</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span class="summary-label">Total:</span>
+          <span class="summary-value">{{ total() | currency }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="checkout-form-section">
+      <form #checkoutForm="ngForm" (ngSubmit)="onSubmit()" class="checkout-form">
+        <h2 class="form-title">Billing Information</h2>
+
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="fullName" class="form-label">
+            Full Name <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            [(ngModel)]="fullName"
+            required
+            [minlength]="MIN_NAME"
+            #nameField="ngModel"
+            placeholder="Enter your full name"
+            class="form-control"
+            [class.invalid]="nameField.invalid && (nameField.dirty || nameField.touched)">
+          @if (nameField.invalid && (nameField.dirty || nameField.touched)) {
+            <div class="error-message">
+              @if (nameField.errors?.['required']) {
+                <span>Full name is required</span>
+              }
+              @if (nameField.errors?.['minlength']) {
+                <span>Full name must be at least {{ MIN_NAME }} characters</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address" class="form-label">
+            Address <span class="required">*</span>
+          </label>
+          <textarea
+            id="address"
+            name="address"
+            [(ngModel)]="address"
+            required
+            [minlength]="MIN_ADDRESS"
+            #addressField="ngModel"
+            placeholder="Enter your address"
+            rows="3"
+            class="form-control"
+            [class.invalid]="addressField.invalid && (addressField.dirty || addressField.touched)"></textarea>
+          @if (addressField.invalid && (addressField.dirty || addressField.touched)) {
+            <div class="error-message">
+              @if (addressField.errors?.['required']) {
+                <span>Address is required</span>
+              }
+              @if (addressField.errors?.['minlength']) {
+                <span>Address must be at least {{ MIN_ADDRESS }} characters</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Credit Card -->
+        <div class="form-group">
+          <label for="creditCard" class="form-label">
+            Credit Card Number <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="creditCard"
+            name="creditCard"
+            [(ngModel)]="creditCard"
+            required
+            [minlength]="MIN_CARD"
+            #cardField="ngModel"
+            placeholder="Enter credit card number"
+            class="form-control"
+            [class.invalid]="cardField.invalid && (cardField.dirty || cardField.touched)">
+          @if (cardField.invalid && (cardField.dirty || cardField.touched)) {
+            <div class="error-message">
+              @if (cardField.errors?.['required']) {
+                <span>Credit card number is required</span>
+              }
+              @if (cardField.errors?.['minlength']) {
+                <span>Credit card number must be at least {{ MIN_CARD }} characters</span>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+          <button
+            type="submit"
+            [disabled]="!checkoutForm.valid"
+            class="btn-submit">
+            <span class="btn-icon">🔒</span>
+            <span>Complete Order</span>
+          </button>
+          <a routerLink="/cart" class="btn-back">Back to Cart</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="product-list-container">
+  <header class="page-header">
+    <h1 class="page-title">Our Products</h1>
+    <p class="page-subtitle">Discover our amazing collection</p>
+  </header>
+
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>{{ 'Loading...' }}</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (errorMessage() && !isLoading()) {
+    <div class="error-state">
+      <div class="error-icon">⚠️</div>
+      <h2>Oops! Something went wrong</h2>
+      <p>{{ errorMessage() }}</p>
+      <button class="btn-retry" (click)="ngOnInit()">Try Again</button>
+    </div>
+  }
+
+  <!-- Products Grid -->
+  @if (!isLoading() && !errorMessage()) {
+    @if (products().length > 0) {
+      <div class="products-grid">
+        @for (product of products(); track product.id) {
+          <app-product-item 
+            [product]="product"
+            (addToCart)="onAddToCart($event)">
+          </app-product-item>
+        }
+      </div>
+    } @else {
+      <div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <h2>No Products Available</h2>
+        <p>Check back soon for new arrivals!</p>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,98 @@
+<div class="cart-container">
+  <header class="cart-header">
+    <h1 class="cart-title">Shopping Cart</h1>
+    @if (!isEmpty()) {
+      <p class="cart-subtitle">{{ itemCount() }} {{ itemCount() === 1 ? 'item' : 'items' }} in your cart</p>
+    }
+  </header>
+
+  <!-- Empty Cart State -->
+  @if (isEmpty()) {
+    <div class="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <h2>Your cart is empty</h2>
+      <p>Looks like you haven't added anything to your cart yet</p>
+      <a routerLink="/" class="btn-primary">Start Shopping</a>
+    </div>
+  }
+
+  <!-- Cart Content -->
+  @if (!isEmpty()) {
+    <div class="cart-content">
+      <!-- Cart Items -->
+      <div class="cart-items-section">
+        <div class="cart-items">
+          @for (item of cartItems(); track item.id) {
+            <div class="cart-item">
+              <div class="item-image-container">
+                <img [src]="item.url" [alt]="item.name" class="item-image">
+              </div>
+              
+              <div class="item-details">
+                <h3 class="item-name">{{ item.name }}</h3>
+                <p class="item-description">{{ item.description }}</p>
+                <div class="item-meta">
+                  <span class="item-price">{{ item.price | currency }}</span>
+                  <span class="item-quantity">Qty: {{ item.quantity }}</span>
+                </div>
+              </div>
+
+              <div class="item-actions">
+                <div class="item-subtotal">
+                  {{ getSubtotal(item) | currency }}
+                </div>
+                <button 
+                  type="button"
+                  class="btn-remove" 
+                  (click)="removeItem(item.id)"
+                  aria-label="Remove {{ item.name }} from cart">
+                  <span class="remove-icon">🗑️</span>
+                  <span class="remove-text">Remove</span>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary-section">
+        <div class="cart-summary">
+          <h2 class="summary-title">Order Summary</h2>
+          
+          <div class="summary-details">
+            <div class="summary-row">
+              <span class="summary-label">Subtotal:</span>
+              <span class="summary-value">{{ total() | currency }}</span>
+            </div>
+            <div class="summary-row">
+              <span class="summary-label">Shipping:</span>
+              <span class="summary-value free">Free</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row total-row">
+              <span class="summary-label">Total:</span>
+              <span class="summary-value">{{ total() | currency }}</span>
+            </div>
+          </div>
+
+          <div class="summary-actions">
+            <button 
+              type="button"
+              class="btn-checkout" 
+              (click)="proceedToCheckout()">
+              Proceed to Checkout
+            </button>
+            <button 
+              type="button"
+              class="btn-clear" 
+              (click)="clearCart()">
+              Clear Cart
+            </button>
+            <a routerLink="/" class="btn-continue">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

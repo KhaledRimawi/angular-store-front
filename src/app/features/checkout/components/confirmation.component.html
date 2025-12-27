@@ -1,0 +1,68 @@
+<div class="confirmation-container">
+  @if (orderInfo) {
+    <div class="confirmation-content">
+      <!-- Success Icon -->
+      <div class="success-icon-container">
+        <div class="success-icon">✓</div>
+      </div>
+
+      <!-- Success Message -->
+      <header class="confirmation-header">
+        <h1 class="confirmation-title">Order Confirmed!</h1>
+        <p class="confirmation-subtitle">Thank you for your purchase</p>
+      </header>
+
+      <!-- Order Details -->
+      <div class="order-details">
+        <h2 class="details-title">Order Details</h2>
+        
+        <div class="details-grid">
+          <div class="detail-item">
+            <span class="detail-label">Name:</span>
+            <span class="detail-value">{{ orderInfo.fullName }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Delivery Address:</span>
+            <span class="detail-value">{{ orderInfo.address }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Payment Method:</span>
+            <span class="detail-value">Credit Card ending in {{ getMaskedCard().slice(-4) }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label">Total Items:</span>
+            <span class="detail-value">{{ orderInfo.totalItems }}</span>
+          </div>
+
+          <div class="detail-item highlight">
+            <span class="detail-label">Total Amount:</span>
+            <span class="detail-value">{{ orderInfo.totalAmount | currency }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="confirmation-actions">
+        <button type="button" class="btn-continue" (click)="continueShopping()">
+          <span class="btn-icon">🛍️</span>
+          <span>Continue Shopping</span>
+        </button>
+      </div>
+
+      <!-- Additional Info -->
+      <div class="additional-info">
+        <p>
+          <strong>📧 Confirmation Email:</strong> 
+          A confirmation email has been sent to your registered email address.
+        </p>
+        <p>
+          <strong>📦 Delivery:</strong> 
+          Your order will be delivered within 3-5 business days.
+        </p>
+      </div>
+    </div>
+  }
+</div>
