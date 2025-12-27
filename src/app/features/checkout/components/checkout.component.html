@@ -44,6 +44,7 @@
             id="fullName"
             name="fullName"
             [(ngModel)]="fullName"
+            (ngModelChange)="onNameChange($event)"
             required
             [minlength]="MIN_NAME"
             #nameField="ngModel"
@@ -71,6 +72,7 @@
             id="address"
             name="address"
             [(ngModel)]="address"
+            (ngModelChange)="onAddressChange($event)"
             required
             [minlength]="MIN_ADDRESS"
             #addressField="ngModel"
@@ -99,8 +101,7 @@
             type="text"
             id="creditCard"
             name="creditCard"
-            [(ngModel)]="creditCard"
-            required
+            [(ngModel)]="creditCard"            (ngModelChange)="onCardChange($event)"            required
             [minlength]="MIN_CARD"
             #cardField="ngModel"
             placeholder="Enter credit card number"

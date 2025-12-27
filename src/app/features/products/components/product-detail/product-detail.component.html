@@ -1,0 +1,86 @@
+<div class="product-detail-container">
+  <!-- Loading State -->
+  @if (isLoading()) {
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading product details...</p>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (errorMessage() && !isLoading()) {
+    <div class="error-state">
+      <div class="error-icon">⚠️</div>
+      <h2>Oops! Something went wrong</h2>
+      <p>{{ errorMessage() }}</p>
+      <button class="btn-back" (click)="goBack()">Back to Products</button>
+    </div>
+  }
+
+  <!-- Product Details -->
+  @if (product() && !isLoading() && !errorMessage()) {
+    <div class="product-detail">
+      <!-- Back Button -->
+      <button class="btn-back-top" (click)="goBack()">
+        ← Back to Products
+      </button>
+
+      <div class="product-content">
+        <!-- Product Image -->
+        <div class="product-image-section">
+          <img 
+            [src]="product()!.url" 
+            [alt]="product()!.name"
+            class="product-image">
+        </div>
+
+        <!-- Product Info -->
+        <div class="product-info-section">
+          <h1 class="product-name">{{ product()!.name }}</h1>
+          
+          <div class="product-price">
+            {{ product()!.price | currency }}
+          </div>
+
+          <div class="product-divider"></div>
+
+          <div class="product-description-section">
+            <h3>Description</h3>
+            <p class="product-description">{{ product()!.description }}</p>
+          </div>
+
+          <div class="product-divider"></div>
+
+          <!-- Quantity Selector -->
+          <div class="quantity-section">
+            <label class="quantity-label">Quantity:</label>
+            <div class="quantity-controls">
+              <button 
+                class="btn-quantity" 
+                (click)="decreaseQuantity()"
+                [disabled]="quantity() === 1">
+                -
+              </button>
+              <span class="quantity-value">{{ quantity() }}</span>
+              <button 
+                class="btn-quantity" 
+                (click)="increaseQuantity()">
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <button class="btn-add-to-cart" (click)="addToCart()">
+            🛒 Add to Cart
+          </button>
+
+          <!-- Product ID -->
+          <div class="product-id">
+            Product ID: #{{ product()!.id }}
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

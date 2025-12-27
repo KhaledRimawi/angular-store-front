@@ -1,5 +1,5 @@
 <div class="product-card">
-  <div class="product-image-container">
+  <div class="product-image-container" [routerLink]="['/product', product().id]" style="cursor: pointer;">
     <img 
       [src]="product().url" 
       [alt]="product().name" 
@@ -8,7 +8,7 @@
   </div>
   
   <div class="product-content">
-    <h3 class="product-title">{{ product().name }}</h3>
+    <h3 class="product-title" [routerLink]="['/product', product().id]" style="cursor: pointer;">{{ product().name }}</h3>
     <p class="product-description">{{ product().description }}</p>
     
     <div class="product-footer">

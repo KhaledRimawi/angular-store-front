@@ -51,6 +51,30 @@ export class CheckoutComponent implements OnInit {
   }
 
   /**
+   * Handle name change event
+   */
+  onNameChange(value: string): void {
+    // You can add custom logic here if needed
+    console.log('Name changed:', value);
+  }
+
+  /**
+   * Handle address change event
+   */
+  onAddressChange(value: string): void {
+    // You can add custom logic here if needed
+    console.log('Address changed:', value);
+  }
+
+  /**
+   * Handle credit card change event
+   */
+  onCardChange(value: string): void {
+    // You can add custom logic here if needed
+    console.log('Card changed:', value);
+  }
+
+  /**
    * Handle form submission
    */
   onSubmit(): void {

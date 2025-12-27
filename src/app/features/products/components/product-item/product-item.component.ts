@@ -1,4 +1,5 @@
 import { Component, input, output } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { Product } from '../../../../core/models';
 import { CurrencyPipe } from '../../../../shared/pipes';
 
@@ -9,7 +10,7 @@ import { CurrencyPipe } from '../../../../shared/pipes';
 @Component({
   selector: 'app-product-item',
   standalone: true,
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './product-item.component.html',
   styleUrl: './product-item.component.css',
 })
