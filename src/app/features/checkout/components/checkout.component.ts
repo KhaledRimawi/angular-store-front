@@ -68,10 +68,15 @@ export class CheckoutComponent implements OnInit {
 
   /**
    * Handle credit card change event
+   * Ensures only numeric input is allowed
    */
   onCardChange(value: string): void {
-    // You can add custom logic here if needed
-    console.log('Card changed:', value);
+    // Remove any non-numeric characters
+    const numericValue = value.replace(/\D/g, '');
+    if (value !== numericValue) {
+      this.creditCard = numericValue;
+    }
+    console.log('Card changed:', numericValue);
   }
 
   /**

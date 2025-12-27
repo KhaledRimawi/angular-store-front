@@ -101,10 +101,13 @@
             type="text"
             id="creditCard"
             name="creditCard"
-            [(ngModel)]="creditCard"            (ngModelChange)="onCardChange($event)"            required
+            [(ngModel)]="creditCard"
+            (ngModelChange)="onCardChange($event)"
+            required
             [minlength]="MIN_CARD"
+            pattern="[0-9]+"
             #cardField="ngModel"
-            placeholder="Enter credit card number"
+            placeholder="Enter credit card number (numbers only)"
             class="form-control"
             [class.invalid]="cardField.invalid && (cardField.dirty || cardField.touched)">
           @if (cardField.invalid && (cardField.dirty || cardField.touched)) {
@@ -113,7 +116,10 @@
                 <span>Credit card number is required</span>
               }
               @if (cardField.errors?.['minlength']) {
-                <span>Credit card number must be at least {{ MIN_CARD }} characters</span>
+                <span>Credit card number must be at least {{ MIN_CARD }} digits</span>
+              }
+              @if (cardField.errors?.['pattern']) {
+                <span>Credit card number must contain only numbers</span>
               }
             </div>
           }
